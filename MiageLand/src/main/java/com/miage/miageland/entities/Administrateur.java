@@ -1,9 +1,13 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @DiscriminatorValue("administrateur")
+@Getter
+@Setter
 public class Administrateur extends Employe {
 
     public void ajouterAttraction(Attraction attraction) {
@@ -22,4 +26,5 @@ public class Administrateur extends Employe {
         // Code pour fermer une attraction
     }
 }
+
 

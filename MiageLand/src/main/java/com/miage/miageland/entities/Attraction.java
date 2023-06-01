@@ -1,8 +1,12 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
+@Getter
+@Setter
 public class Attraction {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -12,28 +16,4 @@ public class Attraction {
 
     private boolean estOuverte;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public boolean isEstOuverte() {
-        return estOuverte;
-    }
-
-    public void setEstOuverte(boolean estOuverte) {
-        this.estOuverte = estOuverte;
-    }
 }
-

@@ -1,9 +1,14 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.Date;
 
 @Entity
+@Getter
+@Setter
 public class Billet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -21,52 +26,4 @@ public class Billet {
 
     private String etat;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Date getDate() {
-        return date;
-    }
-
-    public void setDate(Date date) {
-        this.date = date;
-    }
-
-    public String getNumero() {
-        return numero;
-    }
-
-    public void setNumero(String numero) {
-        this.numero = numero;
-    }
-
-    public Visiteur getVisiteur() {
-        return visiteur;
-    }
-
-    public void setVisiteur(Visiteur visiteur) {
-        this.visiteur = visiteur;
-    }
-
-    public float getPrix() {
-        return prix;
-    }
-
-    public void setPrix(float prix) {
-        this.prix = prix;
-    }
-
-    public String getEtat() {
-        return etat;
-    }
-
-    public void setEtat(String etat) {
-        this.etat = etat;
-    }
 }
-

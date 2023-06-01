@@ -1,9 +1,14 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
 import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Visiteur {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -15,46 +20,6 @@ public class Visiteur {
 
     @OneToMany(mappedBy = "visiteur", cascade = CascadeType.ALL)
     private List<Billet> billets;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNom() {
-        return nom;
-    }
-
-    public void setNom(String nom) {
-        this.nom = nom;
-    }
-
-    public String getPrenom() {
-        return prenom;
-    }
-
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
-    }
-
-    public String getAdresseMail() {
-        return adresseMail;
-    }
-
-    public void setAdresseMail(String adresseMail) {
-        this.adresseMail = adresseMail;
-    }
-
-    public List<Billet> getBillets() {
-        return billets;
-    }
-
-    public void setBillets(List<Billet> billets) {
-        this.billets = billets;
-    }
 
     public void reserverBillet() {
         // Logique pour réserver un billet
