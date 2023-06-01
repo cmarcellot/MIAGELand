@@ -1,14 +1,14 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class Billet {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

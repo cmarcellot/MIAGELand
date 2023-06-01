@@ -1,13 +1,14 @@
 package com.miage.miageland.entities;
 
-import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import jakarta.persistence.DiscriminatorValue;
+import jakarta.persistence.Entity;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @DiscriminatorValue("administrateur")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class Administrateur extends Employe {
 
     public void ajouterAttraction(Attraction attraction) {

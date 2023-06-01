@@ -1,14 +1,14 @@
 package com.miage.miageland.entities;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-@Getter
-@Setter
+@Data
+@NoArgsConstructor
 public class Employe {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
