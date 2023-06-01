@@ -20,15 +20,4 @@ public class Employe {
 
     private String adresseMail;
 
-    public void seConnecter() {
-        // Code pour la connexion
-    }
-
-    public void seDeconnecter() {
-        // Code pour la déconnexion
-    }
-
-    public void scannerBillet() {
-        // Code pour scanner un billet
-    }
 }

@@ -18,5 +18,4 @@ public class Attraction {
     private String nom;
 
     private boolean estOuverte;
-
 }

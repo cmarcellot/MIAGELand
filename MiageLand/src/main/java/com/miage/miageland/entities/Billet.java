@@ -25,5 +25,4 @@ public class Billet {
     private float prix;
 
     private String etat;
-
 }
