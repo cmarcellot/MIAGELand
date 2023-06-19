@@ -4,6 +4,7 @@ import com.miage.miageland.entities.Billet;
 import com.miage.miageland.metier.ServiceBillet;
 import com.miage.miageland.utilities.BilletInexistantException;
 import com.miage.miageland.utilities.BilletNonAnnulableException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -86,7 +87,7 @@ public class RestBillet {
             serviceBillet.modifierEtatBillet(idBillet, etat);
 
             // Retourner une réponse avec le code HTTP 200 OK et un message de confirmation
-            return ResponseEntity.ok("Le billet d'ID " + idBillet + " est bien annulé");
+            return ResponseEntity.ok().body("L'état du billet d'ID " + idBillet + " a été modifié avec succès (" + etat + ").");
         } catch (BilletInexistantException | BilletNonAnnulableException exception) {
             // En cas d'exception, retourner une réponse avec le code HTTP 400 Bad Request
             // et le message d'erreur de l'exception

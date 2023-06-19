@@ -11,6 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -129,13 +130,22 @@ public class ServiceBillet {
         Optional<Billet> optionalBillet = billetRepository.findById(billetId);
 
         if (optionalBillet.isEmpty()) {
-            throw new BilletInexistantException("Le billet d'ID " + idBillet + " n'existe pas.");
+            throw new BilletInexistantException("Le billet d'ID " + billetId + " n'existe pas.");
         }
 
         if (optionalBillet.isPresent()) {
             Billet billet = optionalBillet.get();
-            Date dateAujourdhui = new Date();
-            boolean estValide = billet.getEtat() == EtatBillet.PAYE && billet.getDate().equals(dateAujourdhui);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            Calendar cal2 = Calendar.getInstance();
+            cal2.setTime(billet.getDate());
+
+            boolean estValide = billet.getEtat() == EtatBillet.PAYE &&
+                    cal.get(Calendar.DAY_OF_YEAR) == cal2.get(Calendar.DAY_OF_YEAR) &&
+                    cal.get(Calendar.YEAR) == cal2.get(Calendar.YEAR) &&
+                    cal.get(Calendar.MONTH) == cal2.get(Calendar.MONTH);
+
             if(estValide){
                 billet.setEtat(EtatBillet.SCANNE);
                 billetRepository.save(billet);
