@@ -3,7 +3,8 @@ package com.miage.miageland.entities;
 public enum EtatBillet {
     RESERVE("Réservé"),
     PAYE("Payé"),
-    ANNULE("Annulé");
+    ANNULE("Annulé"),
+    SCANNE("Scanné");
 
     private final String libelle;
 

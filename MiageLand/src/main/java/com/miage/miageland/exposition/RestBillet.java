@@ -93,4 +93,20 @@ public class RestBillet {
             return ResponseEntity.badRequest().body(exception.getMessage());
         }
     }
+
+    /**
+     * Vérifie la validité d'un billet
+     * GET sur http://localhost:8080/api/billets/1/validation
+     * @param idBillet id du billet à vérifier
+     * @return une réponse HTTP avec le résultat de la vérification
+     */
+    @GetMapping("{id}/validation")
+    public ResponseEntity<String> verifierValiditeBillet(@PathVariable("id") Long idBillet) {
+        boolean estValide = serviceBillet.verifierValiditeBillet(idBillet);
+        if (estValide) {
+            return new ResponseEntity<>("Le billet est valide.", HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>("Le billet n'est pas valide.", HttpStatus.BAD_REQUEST);
+        }
+    }
 }

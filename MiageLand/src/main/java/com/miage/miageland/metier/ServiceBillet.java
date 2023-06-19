@@ -103,7 +103,6 @@ public class ServiceBillet {
             long differenceEnJours = TimeUnit.DAYS.convert(dateAujourdhui.getTime() - billet.getDate().getTime(), TimeUnit.MILLISECONDS);
 
             if (differenceEnJours <= 7) {
-                System.out.println("Ici");
                 billet.setEtat(EtatBillet.ANNULE);
                 billetRepository.save(billet);
                 return new ResponseEntity<> ("Le billet d'ID " + billet.getId() + " est bien annulé, vous serez remboursé de " + billet.getPrix() + "€", HttpStatus.OK);
@@ -118,6 +117,32 @@ public class ServiceBillet {
         } else {
             throw new EtatBilletInexistantException("L'état du billet " + etatModifie + " n'existe pas.");
         }
+    }
+
+    /**
+     * Vérifie la validité d'un billet
+     *
+     * @param billetId l'identifiant du billet à vérifier
+     * @return true si le billet est valide, false sinon
+     */
+    public boolean verifierValiditeBillet(Long billetId) {
+        Optional<Billet> optionalBillet = billetRepository.findById(billetId);
+
+        if (optionalBillet.isEmpty()) {
+            throw new BilletInexistantException("Le billet d'ID " + idBillet + " n'existe pas.");
+        }
+
+        if (optionalBillet.isPresent()) {
+            Billet billet = optionalBillet.get();
+            Date dateAujourdhui = new Date();
+            boolean estValide = billet.getEtat() == EtatBillet.PAYE && billet.getDate().equals(dateAujourdhui);
+            if(estValide){
+                billet.setEtat(EtatBillet.SCANNE);
+                billetRepository.save(billet);
+                return true;
+            }
+        }
+        return false;
     }
 }
 
