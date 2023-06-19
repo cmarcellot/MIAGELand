@@ -1,5 +1,6 @@
 package com.miage.miageland.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,12 +18,11 @@ public class Billet {
     @Temporal(TemporalType.DATE)
     private Date date;
 
-    private String numero;
-
+    @JsonIgnore
     @ManyToOne
     private Visiteur visiteur;
 
     private float prix;
 
-    private String etat;
+    private EtatBillet etat;
 }

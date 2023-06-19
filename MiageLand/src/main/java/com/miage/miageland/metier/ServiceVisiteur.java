@@ -51,10 +51,10 @@ public class ServiceVisiteur {
 
     /**
      * Supprime un visiteur
-     * @param visiteur le visiteur à supprimer
+     * @param idVisiteur l'identifiant du visiteur à supprimer
      */
-    public void supprimerVisiteur(Visiteur visiteur) {
-        visiteurRepository.delete(visiteur);
+    public void supprimerVisiteur(Long idVisiteur) {
+        visiteurRepository.deleteById(idVisiteur);
     }
 
     /**

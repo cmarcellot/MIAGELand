@@ -11,13 +11,6 @@ import java.util.List;
 public interface BilletRepository extends CrudRepository<Billet, Long> {
 
     /**
-     * Recherche des billets par numéro
-     * @param numero le numéro du billet
-     * @return la liste des billets qui correspondent
-     */
-    List<Billet> findByNumero(String numero);
-
-    /**
      * Recherche des billets par état
      * @param etat l'état du billet
      * @return la liste des billets qui correspondent

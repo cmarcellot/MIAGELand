@@ -46,16 +46,16 @@ public class ServiceEmploye {
      * @param id l'identifiant de l'employé
      * @return l'employé correspondant
      */
-    public Optional<Employe> recupererEmploye(String id) {
-        return employeRepository.findById(id);
+    public Optional<Employe> recupererEmploye(Long id) {
+        return employeRepository.findById(String.valueOf(id));
     }
 
     /**
      * Supprime un employé
-     * @param employe l'employé à supprimer
+     * @param id l'identifiant de l'employé à supprimer
      */
-    public void supprimerEmploye(Employe employe) {
-        employeRepository.delete(employe);
+    public void supprimerEmploye(Long id) {
+        employeRepository.deleteById(String.valueOf(id));
     }
 
     /**

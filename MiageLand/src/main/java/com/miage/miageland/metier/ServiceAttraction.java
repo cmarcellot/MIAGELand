@@ -51,8 +51,8 @@ public class ServiceAttraction {
      * Supprime une attraction
      * @param attraction l'attraction à supprimer
      */
-    public void supprimerAttraction(Attraction attraction) {
-        attractionRepository.delete(attraction);
+    public void supprimerAttraction(Long attraction) {
+        attractionRepository.deleteById(attraction);
     }
 
     /**

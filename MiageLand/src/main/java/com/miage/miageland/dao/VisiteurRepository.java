@@ -1,9 +1,11 @@
 package com.miage.miageland.dao;
 
 import com.miage.miageland.entities.Visiteur;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
+import java.util.Optional;
 
 /**
  * DAO pour les entités représentant les visiteurs du parc d'attraction
@@ -30,5 +32,4 @@ public interface VisiteurRepository extends CrudRepository<Visiteur, Long> {
      * @return la liste des visiteurs qui correspondent
      */
     List<Visiteur> findByAdresseMail(String adresseMail);
-
 }

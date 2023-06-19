@@ -53,8 +53,8 @@ public class ServiceGerant {
      * Supprime un gérant
      * @param gerant le gérant à supprimer
      */
-    public void supprimerGerant(Gerant gerant) {
-        gerantRepository.delete(gerant);
+    public void supprimerGerant(Long gerant) {
+        gerantRepository.deleteById(String.valueOf(gerant));
     }
 
     /**

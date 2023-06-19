@@ -2,7 +2,6 @@ package com.miage.miageland.metier;
 
 import com.miage.miageland.dao.AdministrateurRepository;
 import com.miage.miageland.entities.Administrateur;
-import com.miage.miageland.entities.Attraction;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -52,8 +51,8 @@ public class ServiceAdministrateur {
      * Supprime un administrateur
      * @param administrateur l'administrateur à supprimer
      */
-    public void supprimerAdministrateur(Administrateur administrateur) {
-        administrateurRepository.delete(administrateur);
+    public void supprimerAdministrateur(Long administrateur) {
+        administrateurRepository.deleteById(String.valueOf(administrateur));
     }
 
     /**
