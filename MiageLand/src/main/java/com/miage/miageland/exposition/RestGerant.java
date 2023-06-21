@@ -5,9 +5,6 @@ import com.miage.miageland.metier.ServiceGerant;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Date;
-import java.util.List;
-
 @RestController
 @RequestMapping("/api/gerants")
 public class RestGerant {
