@@ -4,10 +4,13 @@ import com.miage.miageland.entities.Billet;
 import com.miage.miageland.metier.ServiceBillet;
 import com.miage.miageland.utilities.BilletInexistantException;
 import com.miage.miageland.utilities.BilletNonAnnulableException;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -109,5 +112,34 @@ public class RestBillet {
         } else {
             return new ResponseEntity<>("Le billet n'est pas valide.", HttpStatus.BAD_REQUEST);
         }
+    }
+
+    /**
+     * Permet de récupérer la recette totale
+     * GET sur http://localhost:8080/api/billets/recette
+     * @return la recette totale en JSON
+     */
+    @GetMapping("/recette")
+    public ResponseEntity<String> getRecette() {
+        int recette = serviceBillet.getRecette();
+        String message = "La recette totale est de " + recette + " euros.";
+        return ResponseEntity.ok(message);
+    }
+
+    /**
+     * Permet de récupérer le nombre de billets réservés pour une date donnée
+     * GET sur http://localhost:8080/api/billets/billets?date=2021-01-01
+     * @param date la date pour laquelle on veut récupérer le nombre de billets
+     * @return le nombre de billets réservés pour la date donnée
+     */
+    @GetMapping("/stats")
+    public ResponseEntity<String> getNombreBilletsParDate(@RequestParam("date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Date date) {
+        int nombreBillets = serviceBillet.getNbBilletsParDate(date);
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        //Afficher la date au format JJ/MM/AAAA
+        String dateStr = calendar.get(Calendar.DAY_OF_MONTH) + "/" + (calendar.get(Calendar.MONTH) + 1) + "/" + calendar.get(Calendar.YEAR);
+        String message = "Le nombre de billets réservés pour la date " + dateStr + " est de " + nombreBillets;
+        return ResponseEntity.ok(message);
     }
 }

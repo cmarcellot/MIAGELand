@@ -60,4 +60,14 @@ public class RestAttraction {
         return serviceAttraction.obtenirToutesLesAttractions();
     }
 
+    @PutMapping("/{id}/ouvert")
+    public void ouvrirAttraction(@PathVariable("id") Long idAttraction) {
+        this.serviceAttraction.setEstOuverte(idAttraction, true);
+    }
+
+    @PutMapping("/{id}/fermer")
+    public void fermerAttraction(@PathVariable("id") Long idAttraction) {
+        this.serviceAttraction.setEstOuverte(idAttraction, false);
+    }
+
 }
