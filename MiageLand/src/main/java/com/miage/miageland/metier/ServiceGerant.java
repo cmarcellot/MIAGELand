@@ -37,6 +37,7 @@ public class ServiceGerant {
         gerant.setNom(nom);
         gerant.setPrenom(prenom);
         gerant.setAdresseMail(adresseMail);
+        gerant.setJauge(0);
         return gerantRepository.save(gerant);
     }
 
@@ -63,5 +64,28 @@ public class ServiceGerant {
      */
     public List<Gerant> obtenirTousLesGerants() {
         return (List<Gerant>) gerantRepository.findAll();
+    }
+
+    /**
+     * Récupère la jauge d'un gérant
+     * @param id l'identifiant du gérant
+     * @return la jauge du gérant
+     */
+    public int getJaugeGerant(Long id) {
+        Gerant gerant = gerantRepository.findById(String.valueOf(id))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gerant Id:" + id));
+        return gerant.getJauge();
+    }
+
+    /**
+     * Modifie la jauge d'un gérant
+     * @param id l'identifiant du gérant
+     * @param nouvelleJauge la nouvelle jauge du gérant
+     */
+    public void modifierJaugeGerant(Long id, int nouvelleJauge) {
+        Gerant gerant = gerantRepository.findById(String.valueOf(id))
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gerant Id:" + id));
+        gerant.setJauge(nouvelleJauge);
+        gerantRepository.save(gerant);
     }
 }

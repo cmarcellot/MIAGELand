@@ -154,5 +154,30 @@ public class ServiceBillet {
         }
         return false;
     }
+
+    /**
+     * Récupère la recette totale
+     * @return la recette totale
+     */
+    public int getRecette() {
+        List<Billet> billets = (List<Billet>) billetRepository.findAll();
+        int recette = 0;
+        for (Billet billet : billets) {
+            if (billet.getEtat() == EtatBillet.PAYE) {
+                recette += billet.getPrix();
+            }
+        }
+        return recette;
+    }
+
+    /**
+     * Récupère le nombre de billets par date
+     * @param date la date
+     * @return le nombre de billets
+     */
+    public int getNbBilletsParDate(Date date) {
+        List<Billet> billets = billetRepository.findByDate(date);
+        return billets.size();
+    }
 }
 

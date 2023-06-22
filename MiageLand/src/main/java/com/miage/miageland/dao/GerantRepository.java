@@ -38,6 +38,5 @@ public interface GerantRepository extends CrudRepository<Gerant, String> {
      * @return la liste des gérants qui correspondent
      */
     List<Gerant> findByNomAndPrenom(String nom, String prenom);
-
 }
 

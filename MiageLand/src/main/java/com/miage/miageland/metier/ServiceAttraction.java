@@ -62,4 +62,16 @@ public class ServiceAttraction {
     public List<Attraction> obtenirToutesLesAttractions() {
         return (List<Attraction>) attractionRepository.findAll();
     }
+
+    /**
+     * Modifie l'état d'ouverture d'une attraction
+     * @param idAttraction l'identifiant de l'attraction
+     * @param b le nouvel état d'ouverture
+     */
+    public void setEstOuverte (Long idAttraction, boolean b) {
+        Attraction a = attractionRepository.findById(idAttraction).orElse(null);
+        a.setEstOuverte(b);
+        attractionRepository.save(a);
+        //FIX: La requête fonctionne maintenant ! Il manquais le save() pour enregistrer les changements.
+    }
 }
