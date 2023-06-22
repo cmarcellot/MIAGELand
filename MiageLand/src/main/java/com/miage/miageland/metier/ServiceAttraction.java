@@ -71,5 +71,7 @@ public class ServiceAttraction {
     public void setEstOuverte (Long idAttraction, boolean b) {
         Attraction a = attractionRepository.findById(idAttraction).orElse(null);
         a.setEstOuverte(b);
+        attractionRepository.save(a);
+        //FIX: La requête fonctionne maintenant ! Il manquais le save() pour enregistrer les changements.
     }
 }
